@@ -1,8 +1,17 @@
 const inquirer = require('inquirer');
+const util = require('util');
 const fs = require('fs');
 
+
+const writeAsync = util.promisify(fs.writeFile);
+
 let createReadMe = ({ name, description, installation, credits, license }) => {
-    return //readmeFileContent
+//    return //readmeFileContent
+   `<text>#Project Title: ${name}</text>
+    <text>#Project Description: ${description}</text>
+    <text>#Installation: ${installation}</text>
+    <text>#Credits: ${credits}</text>
+    <text>#License: ${license}</text>`
 }
 
 // array of questions for user
@@ -29,34 +38,31 @@ const questions = [
         name: "license"}
 ];
 
-inquirer
-  .prompt(questions)
-  .then(answers => {
-    console.log(answers);
-
-
-    // function to write README file - "data" will pass through the 
-    
-    const template = createReadMe(answers);
-
-    fs.writeFile('README.md', template, (err) => {
-        if (err) throw err;
-        console.log('The file has been saved!');
-    });
-    
-
-
-  })
-  .catch(error => {
-      console.log(error);
-  });
 
 
 
 // function to initialize program
-//function init() {
-
-//}
+function init() {
+    inquirer
+    .prompt(questions)
+    .then(answers => {
+      console.log(answers);
+  
+  
+      // function to write README file - "data" will pass through the 
+      
+      const template = createReadMe(answers);
+  
+      writeAsync('README.md', template);
+      
+  
+  
+    })
+    .catch(error => {
+        console.log(error);
+    });
+  
+}
 
 // function call to initialize program
-//init();
+init();

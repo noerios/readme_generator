@@ -9,13 +9,14 @@ const writeAsync = util.promisify(fs.writeFile);
 
 let createReadMe = ({ name, description, installation, credits, license }) => {
     return
-   `<string>
-    #Project Title: ${name}
-    #Project Description: ${description}
-    #Installation: ${installation}
-    #Credits: ${credits}
-    #License: ${license}
-    </string>`
+   
+    `title: "${name}",
+    description: "${description}",
+    installation: "${installation}",
+    credits: "${credits}",
+    license: "${license}"`
+    
+
 }
 
 // array of questions for user

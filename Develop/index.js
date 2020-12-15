@@ -7,17 +7,7 @@ const path = require('path');
 
 const writeAsync = util.promisify(fs.writeFile);
 
-let createReadMe = ({ name, description, installation, credits, license }) => {
-    return
-   
-    `title: "${name}",
-    description: "${description}",
-    installation: "${installation}",
-    credits: "${credits}",
-    license: "${license}"`
-    
 
-}
 
 // array of questions for user
 const questions = [
@@ -26,7 +16,7 @@ const questions = [
         name: "name"
     },
     {   type: "input",
-        message: "What is a description of your application?",
+        message: "What is a description and usage of your application?",
         name: "description"
     },
     {   type: "input",
